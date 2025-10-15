@@ -1,4 +1,4 @@
-- name: Build and Deploy Petstore
+- name: Build and Deploy petstore1
   hosts: local
   become: yes
   tasks:
@@ -10,11 +10,11 @@
       community.docker.docker_login:
         registry_url: https://index.docker.io/v1/
         username: "muralidharan96"
-        password: "dckr_pat_smhAzlyXui9XuOYgaYD30y41WjY"
+        password: "dckr_pat_GOKrQcbCAlJuX2DAOkVz4-bFuBQ"
 
     - name: Build and Push Docker image
       community.docker.docker_image:
-        name: "muralidharan96/petstore"
+        name: "muralidharan96/petstore1"
         tag: latest
         build:
           path: /var/lib/jenkins/workspace/petstore
@@ -24,7 +24,7 @@
     - name: Run Petstore container
       community.docker.docker_container:
         name: pet1
-        image: "muralidharan96/petstore:latest"
+        image: "muralidharan96/petstore1:latest"
         state: started
         restart_policy: always
         published_ports:
